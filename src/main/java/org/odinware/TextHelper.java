@@ -31,6 +31,7 @@ public class TextHelper {
     public TextHelper(String filePath) {
         this.filePath = filePath;
         checkAndPopulateFileIfEmpty();
+        openTextFile();
     }
 
     /**
