@@ -1,6 +1,6 @@
 # Odin Runes
 
-<img src="doc/img/odin-logo-382023.png" alt="ODIN Logo" width="20%">
+<img src="docs/img/odin-logo-382023.png" alt="ODIN Logo" width="20%">
 
 Welcome to Odin Runes, a powerful GPT (Generative Pre-trained Transformer) integration tool that revolutionizes the way you interact with GPT models. With Odin Runes, you can seamlessly integrate with various GPT providers, overcoming vendor lock-in and unlocking the true potential of natural language processing. Through a simple and intuitive GUI, Odin Runes enables you to chat with your chosen GPT right through your favorite text editor. It also empowers you to capture context from various sources, such as clipboard, OCR from a region on the screen, and OCR from an entire scrollable region on the screen, providing valuable context to GPT models for more accurate and meaningful responses. This comprehensive README.md will guide you through the features, advantages, setup, usage, configuration, and resources of Odin Runes. (stay tuned for Demo video!)
 
