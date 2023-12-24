@@ -49,16 +49,63 @@ Odin Runes offers several advantages over traditional GPT integration methods:
 
 - **Easy Integration with New Models**: Odin Runes' modular design provides a solid foundation for integrating new GPT models and providers. Adding support for new models is made easier by extending the existing codebase and implementing the custom GPT interface. As the landscape of GPT models evolves, you can effortlessly integrate and experiment with emerging models without the need to rework the entire application.
 
-## Setup and Dependencies
 
-To leverage the capabilities of Odin Runes, you will need to set up the necessary dependencies:
+## Installation
+
+To install and set up Odin Runes, follow these steps:
+
+1. Clone the repository to your local machine:
+
+   ```
+   git clone https://github.com/leonid20000/OdinRunes.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```
+   cd OdinRunes
+   ```
+
+3. Build the project using Maven:
+
+   ```
+   mvn clean install
+   ```
+
+4. Ensure that the necessary dependencies are installed and added to your project. You can find the list of dependencies in the `pom.xml` file. (Maven helps you with this)
+
+5. Set up the required environment variables:
+
+    - `GCLOUD_VERTEX_AI_ACCESS_TOKEN`: Set this environment variable to the access token for the Google Cloud Vertex AI. It is needed to authenticate requests to the Vertex AI API. (*Required for using Google's GPT APIs.*)
+
+    - `OPENAI_API_KEY_ODIN_FIRST`: Set this environment variable to the API key for OpenAI. (*Required for using OpenAI's GPT APIs.*)
+
+    - `TESSDATA_PREFIX`: Set this environment variable to the path where Tesseract's `tessdata` folder is located. It is needed for Tesseract to locate the necessary language data for OCR. 
+
+    - `VERTEXAI_API_ENDPOINT`: Set this environment variable to the API endpoint for Google Cloud Vertex AI. It specifies the location of the Vertex AI service for making API requests. (*Required for using Google's GPT APIs.*)
+
+    - `VERTEXAI_PROJECT_ID`: Set this environment variable to the project ID for your Google Cloud project. It is required to make API requests to the Vertex AI service. (*Required for using Google's GPT APIs.*)
+
+6. Once the installation and setup are complete, you can run Odin Runes. You can run Odin Runes by double-clicking on the JAR file `target/OdinRunes-1.0-SNAPSHOT-jar-with-dependencies.jar` or alternatively by using the following command:
+
+   ```
+   java -jar target/OdinRunes-1.0-SNAPSHOT-jar-with-dependencies.jar
+   ```
+
+   This will start the Odin Runes application.
+
+Congratulations! You have successfully installed and set up Odin Runes. Refer to the [Usage](#usage) section in the README.md file for instructions on how to use Odin Runes to interact with GPT models.
+
+
+## Dependencies
+
+To leverage the capabilities of Odin Runes, you will need to set up the necessary dependencies (Maven will help you with most parts):
 
 - **SikuliX**: For capturing screenshots and interacting with graphical elements.
 - **Tesseract**: For extracting text from images using OCR (Optical Character Recognition).
 - **OkHttp**: For making HTTP requests to GPT providers.
 - **JSON Libraries**: For parsing and manipulating JSON data.
 
-Please ensure that these dependencies are installed and added to your project before using Odin Runes.
 
 ## Usage
 
@@ -96,9 +143,6 @@ Save the current context to a file using the "Save Context" button in the settin
 
 Load a previously saved context using the "Load Context" button in the settings panel whenever required. This facilitates the active usage of different pre-captured contexts in various chat sessions.
 
-## Configuration
-
-Odin Runes provides the flexibility to configure various aspects of the project, such as API keys and default settings. You can modify the code or utilize a configuration file to customize the project according to your specific needs. Ensure that you have the necessary dependencies installed and added to the project before modifying or configuring.
 
 ## Contributors
 
