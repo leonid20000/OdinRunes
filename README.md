@@ -4,7 +4,16 @@
 
 Welcome to Odin Runes, a powerful GPT (Generative Pre-trained Transformer) integration tool that revolutionizes the way you interact with GPT models. With Odin Runes, you can seamlessly integrate with various GPT providers, overcoming vendor lock-in and unlocking the true potential of natural language processing. Through a simple and intuitive GUI, Odin Runes enables you to chat with your chosen GPT right through your favorite text editor. It also empowers you to capture context from various sources, such as clipboard, OCR from a region on the screen, and OCR from an entire scrollable region on the screen, providing valuable context to GPT models for more accurate and meaningful responses. This comprehensive README.md will guide you through the features, advantages, setup, usage, configuration, and resources of Odin Runes. (stay tuned for Demo video!)
 
-[![docs](https://img.shields.io/badge/docs-grey)](https://leonid20000.github.io/OdinRunes/org/odinware/odinrunes/package-summary.html)[![docs](https://github.com/leonid20000/OdinRunes/actions/workflows/pages/pages-build-deployment/badge.svg)](https://leonid20000.github.io/OdinRunes/org/odinware/package-summary.html)
+[![docs](https://img.shields.io/badge/docs-grey)](https://leonid20000.github.io/OdinRunes/org/odinware/odinrunes/package-summary.html)[![docs](https://github.com/leonid20000/OdinRunes/actions/workflows/pages/pages-build-deployment/badge.svg)](https://leonid20000.github.io/OdinRunes/org/odinware/odinrunes/package-summary.html)
+
+
+## Demo Video
+
+Experience the power of OdinRunes in action with an engaging demo. Click the play button below to witness how this useful java tool, driven by GPTs, boosts your productivity and saves you valuable time:
+
+[![Odin Runes Demo Video](https://img.youtube.com/vi/8BPGULLC3Os/0.jpg)](https://www.youtube.com/watch?v=8BPGULLC3Os)
+
+
 
 ## Table of Contents
 - [Features](#features)
