@@ -163,7 +163,7 @@ To enhance your understanding and optimize your usage of Odin Runes, consider re
 
 ## Light Up the Night
 
-**Odin Runes** is an open-source project, embracing the power of community. Consider giving it a star 🌟, if you think it deserves one. Your star helps acknowledge the collective effort behind this project and motivates further improvements.
+**Odin Runes** is an open-source labour of love, a weekend project embracing the power of community. Consider giving it a star 🌟, if you think it deserves one. Your star helps acknowledge the collective effort behind this project and motivates further improvements.
 
 Thank you for being a part of our open source community! 🌟
 
