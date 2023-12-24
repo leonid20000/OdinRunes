@@ -9,7 +9,8 @@ Welcome to Odin Runes, a powerful GPT (Generative Pre-trained Transformer) integ
 ## Table of Contents
 - [Features](#features)
 - [Advantages of Using Odin Runes](#advantages-of-using-odin-runes)
-- [Setup and Dependencies](#setup-and-dependencies)
+- [Setup and Installation](#installation)
+- [Dependencies](#dependencies)
 - [Usage](#usage)
     - [1. Capturing Context](#1-capturing-context)
         - [1.1. Capture context from Clipboard](#11-capture-context-from-clipboard)
@@ -19,7 +20,6 @@ Welcome to Odin Runes, a powerful GPT (Generative Pre-trained Transformer) integ
     - [3. Appending Prompts](#3-appending-prompts)
     - [4. Saving Context](#4-saving-context)
     - [5. Loading Context](#5-loading-context)
-- [Configuration](#configuration)
 - [Contributors](#contributors)
 - [License](#license)
 - [Resources](#resources)
