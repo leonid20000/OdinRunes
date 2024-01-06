@@ -87,7 +87,7 @@ public class TextHelper {
      */
     public void appendOdinFirstInfo(String model, String date) {
         String odinFirstInfo = String.format(
-                "// =====[ Odin Runes ]======[ {\"model\" : \"%s\", \"date\": \"%s\"} ]======[ + ]\n",
+                "<!-- =====[ Odin Runes ]======[ {\"model\" : \"%s\", \"date\": \"%s\"} ]======[ + ] -->\n",
                 model, date
         );
         appendStringToFile(odinFirstInfo);
@@ -97,7 +97,7 @@ public class TextHelper {
      * Appends the user info to the file.
      */
     public void appendUserInfo() {
-        String userInfo = "// =====[ User ]=====[ : ]\n";
+        String userInfo = "<!-- =====[ User ]=====[ : ] -->\n";
         appendStringToFile(userInfo);
     }
 
@@ -105,7 +105,7 @@ public class TextHelper {
      * Appends the over info with an error to the file.
      */
     public void appendOverInfoWithError() {
-        String overInfo = "// =====[ OVER ]=====[ ! ]\n";
+        String overInfo = "<!-- =====[ OVER ]=====[ ! ] -->\n";
         appendStringToFile(overInfo);
     }
 
@@ -113,7 +113,7 @@ public class TextHelper {
      * Appends the assistant info to the file.
      */
     public void appendAssistantInfo() {
-        String assistantInfo = "// =====[ Assistant ]=====[ : ]\n";
+        String assistantInfo = "<!-- =====[ Assistant ]=====[ : ] -->\n";
         appendStringToFile(assistantInfo);
     }
 
@@ -121,7 +121,7 @@ public class TextHelper {
      * Appends the over info to the file.
      */
     public void appendOverInfo() {
-        String overInfo = "// =====[ OVER ]=====[ # ]\n";
+        String overInfo = "<!-- =====[ OVER ]=====[ # ] -->\n";
         appendStringToFile(overInfo);
     }
 
@@ -158,11 +158,11 @@ public class TextHelper {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if (line.contains("// =====[ User ]=====[ : ]")) {
+                if (line.contains("<!-- =====[ User ]=====[ : ] -->")) {
                     isUserSection = true;
                     isAssistantSection = false;
                     messageBuilder.setLength(0); // Clear the message builder.
-                } else if (line.contains("// =====[ Odin Runes ]======[") && line.contains("]======[ + ]")) {
+                } else if (line.contains("<!-- =====[ Odin Runes ]======[") && line.contains("]======[ + ] -->")) {
                     isUserSection = false;
                     isAssistantSection = false;
                     messageBuilder.setLength(0); // Clear the message builder.
@@ -179,11 +179,11 @@ public class TextHelper {
                             jsonTemp = null; // JSON is invalid.
                         }
                     }
-                } else if (line.contains("// =====[ Assistant ]=====[ : ]")) {
+                } else if (line.contains("<!-- =====[ Assistant ]=====[ : ] -->")) {
                     isUserSection = false;
                     isAssistantSection = true;
                     messageBuilder.setLength(0); // Clear the message builder.
-                } else if (line.contains("// =====[ OVER ]=====[ # ]")) {
+                } else if (line.contains("<!-- =====[ OVER ]=====[ # ] -->")) {
                     if (isUserSection || isAssistantSection) {
                         String content = messageBuilder.toString().trim();
                         if (!content.isEmpty()) {
@@ -200,7 +200,7 @@ public class TextHelper {
                     isUserSection = false;
                     isAssistantSection = false;
                     jsonTemp = null; // Reset the JSON temp variable.
-                } else if (line.contains("// =====[ OVER ]=====[ ! ]")) {
+                } else if (line.contains("<!-- =====[ OVER ]=====[ ! ] -->")) {
                     if (isUserSection || isAssistantSection) {
                         messageBuilder.setLength(0); // Clear the message builder.
                     }
@@ -237,7 +237,7 @@ public class TextHelper {
     public static boolean isFirstLineValid(File file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String firstLine = reader.readLine();
-            return firstLine != null && firstLine.contains("// =====[ Odin");
+            return firstLine != null && firstLine.contains("<!-- =====[ Odin");
         } catch (IOException e) {
             logger.log(Level.SEVERE, "An error occurred: ", e);
             return false; // Handle the exception as needed

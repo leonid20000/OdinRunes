@@ -44,7 +44,7 @@ public class TextHelperTest {
         reader.close();
 
         // Use a regular expression to match the date format dd/MM/yy
-        assertEquals(true, line.matches("// =====\\[ Odin Runes \\]======\\[ \\{\"model\" : \"as-specified\", \"date\": \"\\d{2}/\\d{2}/\\d{2}\"\\} \\]======\\[ \\+ \\]"));
+        assertEquals(true, line.matches("<!-- =====\\[ Odin Runes \\]======\\[ \\{\"model\" : \"as-specified\", \"date\": \"\\d{2}/\\d{2}/\\d{2}\"\\} \\]======\\[ \\+ \\] -->"));
     }
 
 
@@ -88,7 +88,7 @@ public class TextHelperTest {
         String line = reader.readLine();
         reader.close();
 
-        Assertions.assertEquals("// =====[ Odin Runes ]======[ {\"model\" : \"" + model + "\", \"date\": \"" + date + "\"} ]======[ + ]", line);
+        Assertions.assertEquals("<!-- =====[ Odin Runes ]======[ {\"model\" : \"" + model + "\", \"date\": \"" + date + "\"} ]======[ + ] -->", line);
     }
 
 }
