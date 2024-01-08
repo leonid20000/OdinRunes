@@ -80,7 +80,13 @@ public class Context implements Serializable {
         }
 
         public String getCapturedText() {
-            return capturedText;
+            if(getCaptureMethod().equals("File (Live)")){
+               String fileContent=TextHelper.readIntoString(capturedText);
+               if(fileContent == null){
+                   return "ERROR READING FROM FILE";
+               } else return fileContent;
+            } else return capturedText;
+
         }
 
         public void setCapturedText(String capturedText) {

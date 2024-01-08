@@ -83,6 +83,10 @@ public class GooglePalm2WellsOfWisdomOverVertexAI implements WellsOfWisdom {
                 contextInfo.put(new JSONObject().put("role", "system").put("content", "The text content captured by OCR from a portion of the user's screen is as follows: " + capturedText));
             } else if (captureMethod.equals("Scrollshot (OCR)")) {
                 contextInfo.put(new JSONObject().put("role", "system").put("content", "The text content captured by OCR from a portion of the user's screen is included below. It might have some redundant lines. \n" + capturedText));
+            } else if (captureMethod.equals("File (Live)")) {
+                contextInfo.put(new JSONObject().put("role", "system").put("content", "The content of a file is included below: \n" + capturedText));
+            } else {
+                contextInfo.put(new JSONObject().put("role", "system").put("content", "Some additional information labeled as "+captureMethod+" is included below: \n" + capturedText));
             }
         }
 

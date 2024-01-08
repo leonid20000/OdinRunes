@@ -114,7 +114,7 @@ public class Main {
         mainComponentsPanel.setLayout(new FlowLayout());
 
         // Create the first dropdown menu
-        String[] options = {"Clipboard", "Regionshot (OCR)", "Scrollshot (OCR)", "Photo (Coming Soon)"};
+        String[] options = {"Clipboard", "Regionshot (OCR)", "Scrollshot (OCR)", "File (Live)","Photo (Coming Soon)"};
         final JComboBox<String> firstDropdown = new JComboBox<>(options);
         firstDropdown.setBackground(new Color(189, 219, 225)); // RGB values for a blue-grey shade
 
@@ -156,6 +156,19 @@ public class Main {
                                 logger.info(selectedArgument);
                                 toggleSettingsPanelVisibility();
                                 if(!settingsVisible) toggleSettingsPanelVisibility();
+                            } else if (selectedFunction.equals("File (Live)")) {
+                                JFileChooser fileChooser = new JFileChooser();
+                                int returnValue = fileChooser.showOpenDialog(null);
+                                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                                    File tempFile = fileChooser.getSelectedFile();
+                                    if(TextHelper.readIntoString(tempFile.getAbsolutePath())==null) {
+                                        // Do something with the selected file, e.g., display its path
+                                        JOptionPane.showMessageDialog(frame, "ERROR: Something is wrong with the selected file: " + tempFile.getAbsolutePath());
+                                    }else{
+                                        JOptionPane.showMessageDialog(frame, "OK: I will pass the latest content of the selected file as part of the context to your specified GPT provider. \nThis means that any changes to the file will also be automatically reflected in the context. \nThe selected file: " + tempFile.getAbsolutePath());
+                                        context.addCapturedData(tempFile.getAbsolutePath(), "File (Live)");
+                                    }
+                                }
                             }
 
                             // Add logic to handle the result or display a message.
@@ -207,7 +220,7 @@ public class Main {
                     try {
                         boolean fileCreated = selectedFile.createNewFile();
                         if (fileCreated) {
-                            JOptionPane.showMessageDialog(frame, "File created: " + selectedFile.getAbsolutePath());
+                            JOptionPane.showMessageDialog(frame, "File created: " + selectedFile.getAbsolutePath()+"\nOdinRunes will use this file every time you click the chat button from now on.");
                         } else {
                             JOptionPane.showMessageDialog(frame, "File already exists.");
                         }
@@ -232,6 +245,7 @@ public class Main {
                         JOptionPane.showMessageDialog(frame, "Something is wrong with the selected output file: " + selectedFile.getAbsolutePath());
                     }else{
                         selectedFile=tempFile;
+                        JOptionPane.showMessageDialog(frame, "Output file set successfully to: " + selectedFile.getAbsolutePath()+"\nOdinRunes will use this file every time you click the chat button from now on.");
                     }
                 }
             }

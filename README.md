@@ -25,6 +25,7 @@ Experience the power of OdinRunes in action with an engaging demo. Click the pla
         - [1.1. Capture context from Clipboard](#11-capture-context-from-clipboard)
         - [1.2. Capture context from Region](#12-capture-context-from-region)
         - [1.3. Capture context from Scrollable Region](#13-capture-context-from-scrollable-region)
+        - [1.4. Capture context from File](#14-capture-context-from-file)
     - [2. Initiating a Chat](#2-initiating-a-chat)
     - [3. Appending Prompts](#3-appending-prompts)
     - [4. Saving Context](#4-saving-context)
@@ -40,19 +41,19 @@ Odin Runes offers a range of powerful features that enhance your interaction wit
 - Interact with your desired GPT right through your favorite text editor
 - Avoid vendor lock-in with a multi-cloud approach
 - Switch to the GPT provider of your choice seamlessly
-- Capture context from various sources such as clipboard, OCR from a region on the screen, and OCR from an entire scrollable region on the screen
+- Capture context from various sources such as clipboard, OCR from a region on the screen, OCR from an entire scrollable region on the screen, and dynamically from a file
 - Save context and load it in different conversations
 - Save chats independently from their context for greater flexibility
 
 ## Advantages of Using Odin Runes
 
-Odin Runes offers several advantages over traditional GPT integration methods:
+Odin Runes offers several advantages over traditional GPT clients:
 
-- **Avoid Vendor Lock-in**: By embracing a multi-cloud approach, Odin Runes liberates you from vendor lock-in. You are no longer constrained to a single GPT provider, giving you the freedom to choose the provider that offers the best performance, cost-effectiveness, or features for your specific application. This flexibility ensures you can adapt to changing requirements and leverage the advancements of different GPT providers.
+- **Avoid Vendor Lock-in**: By embracing a multi-cloud approach, Odin Runes liberates you from vendor lock-in. You are no longer constrained to a single GPT provider, giving you the freedom to choose the provider that offers the best performance, cost-effectiveness, or features for your specific application. This flexibility ensures you can adapt to changing requirements and leverage the advancements of different GPT providers. Odin Runes currently integrates with several GPT providers, including OpenAI's gpt-3.5-turbo, as well as Google's gemini-pro, and chat-bison via GCP's VertexAI. Stay tuned for future integrations with additional GPT providers. Additionally, Odin Runes offers the flexibility to integrate your own GPT providers by implementing the WellsOfWisdom Interface. This allows you to expand the platform's capabilities and incorporate your preferred GPT provider seamlessly. For more information on how to integrate your own provider, please watch the demo provided. 
 
 - **Enhanced User Experience**: By seamlessly integrating GPT models with your favorite text editor through Odin Runes, you can unlock a host of benefits. You'll have the power to leverage the extensive features of your trusted text editor, making your interactions with GPT models more versatile and efficient. Imagine being able to utilize powerful text editing capabilities such as syntax highlighting, code folding, and search-and-replace functionality while conversing with GPT models. This integration allows you to harness the full potential of GPT models within the familiar environment of your text editor. Moreover, because chat sessions are stored as files on your file system, you can take advantage of existing operating system features like grep to easily search and manage your past conversations with GPT models. 
 
-- **Improved Contextual Understanding**: Odin Runes allows you to provide context to GPT models through various sources such as clipboard, OCR-based screen region capture, and OCR-based scrollable region capture. By enriching conversations with relevant information, the GPT models possess a better understanding of the context, leading to more accurate and meaningful responses. This contextual understanding enables applications like document summarization, content generation, and more.
+- **Improved Contextual Understanding**: Odin Runes allows you to provide context to GPT models through various sources such as clipboard, OCR-based screen region capture, OCR-based scrollable region capture, and dynamically from a file. By enriching conversations with relevant information, the GPT models possess a better understanding of the context, leading to more accurate and meaningful responses. This contextual understanding enables applications like document summarization, content generation, and more.
 
 - **Effortless Context and Chat Management**: With Odin Runes, managing context and chats becomes seamless. You can save and load context independently, facilitating the reuse of previously saved context across multiple conversations. Furthermore, saving and loading chats independently allows for greater flexibility and control over the conversations. This effortless context and chat management streamlines your workflow and enables efficient interaction with GPT models.
 
@@ -95,10 +96,10 @@ To install and set up Odin Runes, follow these steps:
 
     - `VERTEXAI_PROJECT_ID`: Set this environment variable to the project ID for your Google Cloud project. It is required to make API requests to the Vertex AI service. (*Required for using Google's GPT APIs.*)
 
-6. Once the installation and setup are complete, you can run Odin Runes. You can run Odin Runes by double-clicking on the JAR file `target/OdinRunes-1.0-SNAPSHOT-jar-with-dependencies.jar` or alternatively by using the following command:
+6. Once the installation and setup are complete, you can run Odin Runes. You can run Odin Runes by double-clicking on the JAR file `target/OdinRunes-1.1-SNAPSHOT-jar-with-dependencies.jar` or alternatively by using the following command:
 
    ```
-   java -jar target/OdinRunes-1.0-SNAPSHOT-jar-with-dependencies.jar
+   java -jar target/OdinRunes-1.1-SNAPSHOT-jar-with-dependencies.jar
    ```
 
    This will start the Odin Runes application.
@@ -135,6 +136,11 @@ Click the "Add context from Regionshot" button to capture text from a specific r
 #### 1.3. Capture context from Scrollable Region
 
 Click the "Add context from Scrollshot" button to capture text from a scrollable region on the screen using OCR. This captures the entire content visible within the scrollable region, virtually enabling you to capture context from anywhere.
+
+#### 1.4. Capture context from File
+
+Click the "Add context from File" button to dynamically add context from a file. Any changes made to the file thereafter will be automatically reflected in the context. Please be aware that currently, only plaintext files are supported. Support for other file formats such as PDF or Word documents is under development, so please stay tuned for updates regarding these file types.
+
 
 ### 2. Initiating a Chat
 

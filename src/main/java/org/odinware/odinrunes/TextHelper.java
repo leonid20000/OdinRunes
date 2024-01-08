@@ -243,4 +243,24 @@ public class TextHelper {
             return false; // Handle the exception as needed
         }
     }
+
+    public static String readIntoString(String filePath) {
+        try {
+                File file = new File(filePath);
+                StringBuilder stringBuilder = new StringBuilder();
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                    stringBuilder.append("\n");
+            }
+
+            reader.close();
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "An error occurred in readIntoString: ", e);
+            return null;
+        }
+    }
 }

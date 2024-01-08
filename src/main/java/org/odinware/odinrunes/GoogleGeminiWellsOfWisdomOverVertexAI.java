@@ -103,6 +103,20 @@ public class GoogleGeminiWellsOfWisdomOverVertexAI implements WellsOfWisdom {
                 contents.put(new JSONObject()
                         .put("role", "MODEL")
                         .put("parts", new JSONObject().put("text", "Ok. got it.")));
+            } else if (captureMethod.equals("File (Live)")) {
+                contents.put(new JSONObject()
+                        .put("role", "USER")
+                        .put("parts", new JSONObject().put("text", "The content of a file is included below: \n" + capturedText)));
+                contents.put(new JSONObject()
+                        .put("role", "MODEL")
+                        .put("parts", new JSONObject().put("text", "Ok. got it.")));
+            } else {
+                contents.put(new JSONObject()
+                        .put("role", "USER")
+                        .put("parts", new JSONObject().put("text", "Some additional information labeled as "+captureMethod+" is included below: \n" + capturedText)));
+                contents.put(new JSONObject()
+                        .put("role", "MODEL")
+                        .put("parts", new JSONObject().put("text", "Ok. got it.")));
             }
         }
 
