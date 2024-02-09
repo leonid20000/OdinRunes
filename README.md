@@ -13,7 +13,9 @@ Experience the power of OdinRunes in action with an engaging demo. Click the pla
 
 [![Odin Runes Demo Video](https://img.youtube.com/vi/8BPGULLC3Os/0.jpg)](https://www.youtube.com/watch?v=8BPGULLC3Os)
 
+## Latest Updates
 
+- **Support for Ollama** (OdinRunes-1.2-SNAPSHOT February 9, 2024): Odin Runes now includes support for Ollama, an open-source tool available at [https://github.com/ollama/ollama](https://github.com/ollama/ollama). Ollama facilitates the local execution of multiple open-source LLMs (Language Model Models).
 
 ## Table of Contents
 - [Features](#features)
@@ -26,10 +28,11 @@ Experience the power of OdinRunes in action with an engaging demo. Click the pla
         - [1.2. Capture context from Region](#12-capture-context-from-region)
         - [1.3. Capture context from Scrollable Region](#13-capture-context-from-scrollable-region)
         - [1.4. Capture context from File](#14-capture-context-from-file)
-    - [2. Initiating a Chat](#2-initiating-a-chat)
-    - [3. Appending Prompts](#3-appending-prompts)
-    - [4. Saving Context](#4-saving-context)
-    - [5. Loading Context](#5-loading-context)
+    - [2. Choosing a GPT Provider](#2-choosing-a-gpt-provider)
+    - [3. Initiating a Chat](#3-initiating-a-chat)
+    - [4. Appending Prompts](#4-appending-prompts)
+    - [5. Saving Context](#5-saving-context)
+    - [6. Loading Context](#6-loading-context)
 - [Contributors](#contributors)
 - [License](#license)
 - [Resources](#resources)
@@ -40,7 +43,7 @@ Odin Runes offers a range of powerful features that enhance your interaction wit
 
 - Interact with your desired GPT right through your favorite text editor
 - Avoid vendor lock-in with a multi-cloud approach
-- Switch to the GPT provider of your choice seamlessly
+- Switch to the GPT provider of your choice seamlessly, including locally deployed open-source LLMs. 
 - Capture context from various sources such as clipboard, OCR from a region on the screen, OCR from an entire scrollable region on the screen, and dynamically from a file
 - Save context and load it in different conversations
 - Save chats independently from their context for greater flexibility
@@ -58,7 +61,8 @@ Odin Runes offers several advantages over traditional GPT clients:
 - **Effortless Context and Chat Management**: With Odin Runes, managing context and chats becomes seamless. You can save and load context independently, facilitating the reuse of previously saved context across multiple conversations. Furthermore, saving and loading chats independently allows for greater flexibility and control over the conversations. This effortless context and chat management streamlines your workflow and enables efficient interaction with GPT models.
 
 - **Easy Integration with New Models**: Odin Runes' modular design provides a solid foundation for integrating new GPT models and providers. Adding support for new models is made easier by extending the existing codebase and implementing the custom GPT interface. As the landscape of GPT models evolves, you can effortlessly integrate and experiment with emerging models without the need to rework the entire application.
-
+  
+- **Flexibility with Open-Source LLMs**: Odin Runes now allows you to leverage Ollama to execute multiple open-source LLMs locally. By integrating Ollama into Odin Runes, you can take advantage of the diverse range of open-source LLMs available in the Ollama repository, expanding your options for language model models.
 
 ## Installation
 
@@ -99,7 +103,7 @@ To install and set up Odin Runes, follow these steps:
 6. Once the installation and setup are complete, you can run Odin Runes. You can run Odin Runes by double-clicking on the JAR file `target/OdinRunes-1.1-SNAPSHOT-jar-with-dependencies.jar` or alternatively by using the following command:
 
    ```
-   java -jar target/OdinRunes-1.1-SNAPSHOT-jar-with-dependencies.jar
+   java -jar target/OdinRunes-1.2-SNAPSHOT-jar-with-dependencies.jar
    ```
 
    This will start the Odin Runes application.
@@ -141,20 +145,28 @@ Click the "Add context from Scrollshot" button to capture text from a scrollable
 
 Click the "Add context from File" button to dynamically add context from a file. Any changes made to the file thereafter will be automatically reflected in the context. Please be aware that currently, only plaintext files are supported. Support for other file formats such as PDF or Word documents is under development, so please stay tuned for updates regarding these file types.
 
+### 2. Choosing a GPT Provider
 
-### 2. Initiating a Chat
+When using Odin Runes, you have the flexibility to choose the GPT provider that best suits your needs. 
+
+Odin Runes currently integrates with several GPT providers, including OpenAI's gpt-3.5-turbo, Google's gemini-pro, chat-bison via GCP's Vertex AI, and Ollama. Ollama is an open-source tool available at [https://github.com/ollama/ollama](https://github.com/ollama/ollama) that facilitates the local execution of multiple open-source LLMs (Language Model Models).
+
+To choose a GPT provider, navigate to the settings panel in Odin Runes and configure the provider by providing the necessary parameters.
+
+
+### 3. Initiating a Chat
 
 To start a chat session, click on the "Chat" button, which will open your favorite text editor. You can now initiate a conversation with the GPT model.
 
-### 3. Appending Prompts
+### 4. Appending Prompts
 
 You can append prompts to the chat using your text editor. Simply type your desired prompts and questions, and then click the "Chat" button again in Odin Runes to process the prompt. The GPT model's responses will be appended to the chat history in real-time (so you can tail the chat history using your favorite editor to see the results in real-time).
 
-### 4. Saving Context
+### 5. Saving Context
 
 Save the current context to a file using the "Save Context" button in the settings panel. This allows you to reuse the context in different conversations.
 
-### 5. Loading Context
+### 6. Loading Context
 
 Load a previously saved context using the "Load Context" button in the settings panel whenever required. This facilitates the active usage of different pre-captured contexts in various chat sessions.
 
