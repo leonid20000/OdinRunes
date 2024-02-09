@@ -68,12 +68,18 @@ public class GptOpsHelper {
              case "Google's VertexAI (gemini-pro)":
                  // Code to handle Google's VertexAI (gemini-pro)
                  customWellsOfWisdom = new GoogleGeminiWellsOfWisdomOverVertexAI();
-                 logger.info("Google's VertexAI (gemini-pro)");
+                 logger.info("Using Google's VertexAI (gemini-pro)");
                  break;
+
+            case "Ollama":
+                // Code to handle Ollama
+                customWellsOfWisdom = new OllamaWellsOfWisdom();
+                logger.info("Using Ollama");
+                break;
 
             default:
                 // Code to handle the default case (if gptProvider doesn't match any case)
-                customWellsOfWisdom = new OpenAIWellsOfWisdom();
+                customWellsOfWisdom = new OllamaWellsOfWisdom();
                 logger.info("Unknown provider! Defaulting to OpenAI (gpt-3.5-turbo) instead.");
                 break;
         }

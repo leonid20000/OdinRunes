@@ -2,6 +2,7 @@ package org.odinware.odinrunes;
 
 import okhttp3.*;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -9,20 +10,20 @@ import java.util.List;
 import java.util.logging.Logger;
 /**
  * The {@code OllamaWellsOfWisdom} class is responsible for constructing a valid HTTP request
- * to the OpenAI gpt-3.5-turbo API for chat completions.
+ * to the Ollama API for chat completions.
  * It implements the {@code WellsOfWisdom} interface.
  *
  * <p>Before building the request, it takes a provided context, messages, and GPT settings, and constructs
- * a JSON payload with the appropriate format required by the OpenAI GPT API.
+ * a JSON payload with the appropriate format required by the Ollama API.
  *
  * <p>Once the request is built, it includes the appropriate headers and authentication information.
  * It returns the constructed request object.
  */
-public class OpenAIWellsOfWisdom implements WellsOfWisdom {
-    private static final Logger logger = Logger.getLogger(OpenAIWellsOfWisdom.class.getName());
+public class OllamaWellsOfWisdom implements WellsOfWisdom {
+    private static final Logger logger = Logger.getLogger(OllamaWellsOfWisdom.class.getName());
 
     /**
-     * Constructs an HTTP request to the OpenAI API using the provided context and OpenAI messages.
+     * Constructs an HTTP request to the Ollama API using the provided context and messages.
      *
      * @param context The context containing captured data.
      * @param odinMessages The messages exchanged between the user and the assistant.
@@ -32,14 +33,13 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
      */
     @Override
     public Request buildRequest(Context context, JSONArray odinMessages, JSONObject gptSettingsJsonObject) throws Exception{
-        // setting defaults
-        String openaiApiKey = System.getenv("OPENAI_API_KEY_ODIN_FIRST");
-        String apiUrl = "https://api.openai.com/v1/chat/completions";
+
+        String apiUrl = gptSettingsJsonObject.getString("backendURI");
         /* TO DO: Read from a config file (if any) and update defaults. */
 
 
         boolean hasNewPrompt = false;
-        String model = "gpt-3.5-turbo";
+        String model = gptSettingsJsonObject.getString("model");
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
         JSONObject jsonBody = new JSONObject();
@@ -101,23 +101,21 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
             return null; // No new prompt to send
         }
 
-        if(GptOpsHelper.countWordsInJSONArray(messages) > 2000){
-            model = "gpt-3.5-turbo-16k";
-        }
+
         jsonBody.put("model", model);
 
         jsonBody.put("messages", messages);
 
-        double temperatureDouble = gptSettingsJsonObject.getDouble("temperature");
-        float temperatureFloat = (float) temperatureDouble;
-        jsonBody.put("temperature", temperatureFloat);
+        /* TO DO: Add Temperature */
+        //double temperatureDouble = gptSettingsJsonObject.getDouble("temperature");
+        //float temperatureFloat = (float) temperatureDouble;
+        //jsonBody.put("temperature", temperatureFloat);
 
         jsonBody.put("stream", true);
 
         RequestBody requestBody = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url(apiUrl)
-                .addHeader("Authorization", "Bearer " + openaiApiKey)
                 .post(requestBody)
                 .build();
         return request;
@@ -140,8 +138,28 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
     @Override
     public String readFromResponseStream(Response response){
         try{
+            int responseCode= response.code();
+            if (responseCode != 200) {
+                throw new RuntimeException("Attempts to connect to the API backend using the specified URI resulted in this response code: " + responseCode);
+            }
+
             ResponseBody responseBody = response.body();
-            return responseBody.source().readUtf8Line();
+            // Parse the JSON string
+            JSONObject jsonObject = new JSONObject(responseBody.source().readUtf8Line());
+            // Extract the "done" field
+            boolean done = jsonObject.has("done") && jsonObject.getBoolean("done");
+            if(!done) {
+                if (jsonObject.has("message")) {
+                    // Extract the "content" field from the "message" object
+                    JSONObject messageObject = jsonObject.getJSONObject("message");
+                    String content = messageObject.getString("content");
+                    return WellsOfWisdom.finalStringFormatHelper("Ollama-"+jsonObject.getString("model"), content);
+                } else {
+                    // If "message" doesn't exist, return the original JSONObject as a string
+                    return jsonObject.toString();
+                }
+
+            } else return "data: [DONE]";
 
         } catch (IOException e) {
             throw new RuntimeException(e);

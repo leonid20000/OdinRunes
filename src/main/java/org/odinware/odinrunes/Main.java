@@ -305,7 +305,7 @@ public class Main {
 
 
             // Create an array of options for the dropdown
-            String[] options = {"OpenAI (gpt-3.5-turbo)", "Google's VertexAI (chat-bison)", "Google's VertexAI (gemini-pro)"};
+            String[] options = {"OpenAI (gpt-3.5-turbo)", "Google's VertexAI (chat-bison)", "Google's VertexAI (gemini-pro)", "Ollama"};
 
             // Create a JComboBox with the options array
             final JComboBox<String> dropdown = new JComboBox<>(options);
@@ -331,18 +331,108 @@ public class Main {
                     // Print the selected value from the JComboBox
                     String selectedOption = (String) dropdown.getSelectedItem();
                     logger.info("Selected gpt provider Value: " + selectedOption);
+                    // Check if the selected option is "Ollama"
+                    if (selectedOption.equals("Ollama")) {
+                        // Create a dialog box
+                        JDialog dialog = new JDialog();
+                        dialog.setTitle("Ollama Settings");
+                        dialog.setLayout(new BorderLayout());
 
-                    // Print the selected value from the JSlider
-                    int sliderValue = slider.getValue();
-                    logger.info("Selected Temperature Value: " + sliderValue/100.0);
+                        // Create a panel for the description label
+                        JPanel descriptionPanel = new JPanel();
+                        descriptionPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+                        // Create the description label
+                        JLabel descriptionLabel = new JLabel("<html>Ollama is an open-source project that helps you run opensource LLMs locally. <br>It supports a wide range of models such as llama2, mistral, etc. "
+                                + "<br><br>"
+                                + "The chat completion backend is the API backend from where Ollama is serving the specified LLM's chat completion API.<br>"
+                                + "Example: http://localhost:11434/api/chat <br><br>"
+                                + "</html>");
+                        descriptionLabel.setVerticalAlignment(SwingConstants.TOP);
+                        descriptionPanel.add(descriptionLabel);
 
-                    // Create a JSON object with the selected values
-                    gptSettingsJsonObject = new JSONObject();
-                    gptSettingsJsonObject.put("gptProvider", selectedOption);
-                    gptSettingsJsonObject.put("temperature", sliderValue/100.0);
+                        // Create a panel for the input fields
+                        JPanel inputPanel = new JPanel();
+                        inputPanel.setLayout(new GridBagLayout());
+                        GridBagConstraints gbc = new GridBagConstraints();
+                        gbc.gridx = 0;
+                        gbc.gridy = GridBagConstraints.RELATIVE;
+                        gbc.anchor = GridBagConstraints.WEST;
+                        gbc.fill = GridBagConstraints.HORIZONTAL; // Set fill to horizontal to make the fields span on multiple columns
+                        gbc.insets = new Insets(5, 5, 5, 5);
 
-                    // Log the JSON representation
-                    logger.info("Selected Values (JSON): " + gptSettingsJsonObject.toString());
+                        // Create the first input field
+                        JLabel label1 = new JLabel("Model: ");
+                        JTextField textField1 = new JTextField(45);
+                        String attributeValue1 = gptSettingsJsonObject.optString("model", "");
+                        textField1.setText(attributeValue1);
+                        inputPanel.add(label1, gbc);
+                        gbc.gridx = 1;
+                        inputPanel.add(textField1, gbc);
+
+                        // Create the second input field
+                        JLabel label2 = new JLabel("Backend URI (for chat completion API): ");
+                        JTextField textField2 = new JTextField(45);
+                        String attributeValue2 = gptSettingsJsonObject.optString("backendURI", "");
+                        textField2.setText(attributeValue2);
+                        gbc.gridx = 0;
+                        inputPanel.add(label2, gbc);
+                        gbc.gridx = 1;
+                        inputPanel.add(textField2, gbc);
+
+                        // Create a panel for the submit button
+                        JPanel buttonPanel = new JPanel();
+                        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+                        // Create the submit button
+                        JButton submitButton = new JButton("OK");
+                        buttonPanel.add(submitButton);
+
+                        // Add an action listener for the submit button
+                        submitButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                // Get the values from the input fields
+                                String model = textField1.getText();
+                                String backendURI = textField2.getText();
+
+                                // Print the selected value from the JSlider
+                                int sliderValue = slider.getValue();
+                                logger.info("Selected Temperature Value: " + sliderValue / 100.0);
+
+                                // Create a JSON object with the selected values
+                                gptSettingsJsonObject = new JSONObject();
+                                gptSettingsJsonObject.put("gptProvider", selectedOption);
+                                gptSettingsJsonObject.put("temperature", sliderValue / 100.0);
+                                gptSettingsJsonObject.put("model", model);
+                                gptSettingsJsonObject.put("backendURI", backendURI);
+
+                                // Log the JSON representation
+                                logger.info("Selected Values (JSON): " + gptSettingsJsonObject.toString());
+
+                                // Close the dialog box
+                                dialog.dispose();
+                            }
+                        });
+
+                        // Add the panels to the dialog box
+                        dialog.add(descriptionPanel, BorderLayout.NORTH);
+                        dialog.add(inputPanel, BorderLayout.CENTER);
+                        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+                        // Display the dialog box
+                        dialog.pack();
+                        dialog.setVisible(true);
+                    } else {
+                        // Print the selected value from the JSlider
+                        int sliderValue = slider.getValue();
+                        logger.info("Selected Temperature Value: " + sliderValue / 100.0);
+
+                        // Create a JSON object with the selected values
+                        gptSettingsJsonObject = new JSONObject();
+                        gptSettingsJsonObject.put("gptProvider", selectedOption);
+                        gptSettingsJsonObject.put("temperature", sliderValue / 100.0);
+
+                        // Log the JSON representation
+                        logger.info("Selected Values (JSON): " + gptSettingsJsonObject.toString());
+                    }
                 }
             });
 
