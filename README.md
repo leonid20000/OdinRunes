@@ -13,6 +13,10 @@ Experience the power of OdinRunes in action with an engaging demo. Click the pla
 
 [![Odin Runes Demo Video](https://img.youtube.com/vi/8BPGULLC3Os/0.jpg)](https://www.youtube.com/watch?v=8BPGULLC3Os)
 
+## Odin Runes Wiki
+
+For a quick peek at the various use cases and capabilities of Odin Runes, feel free to explore [Odin Runes Wiki](https://github.com/leonid20000/OdinRunes/wiki). The wiki contains many short gif demos that showcase the unique features and functionality of Odin Runes. It is regularly updated with new content to keep you informed about the latest advancements and possibilities with Odin Runes.
+
 ## Latest Updates
 
 - **Support for Ollama** (OdinRunes-1.2-SNAPSHOT February 9, 2024): Odin Runes now includes support for Ollama, an open-source tool available at [https://github.com/ollama/ollama](https://github.com/ollama/ollama). Ollama facilitates the local execution of multiple open-source LLMs (Language Model Models).
@@ -187,6 +191,8 @@ To enhance your understanding and optimize your usage of Odin Runes, consider re
 - [Tesseract Documentation](https://tesseract-ocr.github.io/tessdoc/)
 - [OkHttp Documentation](https://square.github.io/okhttp/)
 - [JSON Documentation](https://www.json.org/)
+- [Odin Runes Wiki](https://github.com/leonid20000/OdinRunes/wiki)
+
 
 ## Light Up the Night
 
