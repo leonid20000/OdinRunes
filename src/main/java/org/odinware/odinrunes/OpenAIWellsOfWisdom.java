@@ -100,10 +100,11 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
         if (!hasNewPrompt) {
             return null; // No new prompt to send
         }
-
+/* no longer needed, since the default is 16k
         if(GptOpsHelper.countWordsInJSONArray(messages) > 2000){
             model = "gpt-3.5-turbo-16k";
         }
+ */
         jsonBody.put("model", model);
 
         jsonBody.put("messages", messages);
