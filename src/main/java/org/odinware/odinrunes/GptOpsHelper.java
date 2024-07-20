@@ -54,6 +54,11 @@ public class GptOpsHelper {
 
         // Switch case based on gptProvider value
         switch (gptProvider) {
+            case "OpenAI (gpt-4o-mini)":
+                // Code to handle OpenAI (gpt-4o-mini) provider
+                customWellsOfWisdom = new OpenAIWellsOfWisdom();
+                logger.info("Using OpenAI (gpt-4o-mini)");
+                break;
             case "OpenAI (gpt-3.5-turbo)":
                 // Code to handle OpenAI (gpt-3.5-turbo) provider
                 customWellsOfWisdom = new OpenAIWellsOfWisdom();

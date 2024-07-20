@@ -19,7 +19,7 @@ public class Main {
     private static final Logger logger = Logger.getLogger(GraphicalInteractionsHelper.class.getName());
 
     private static Context context = new Context();
-    private static JSONObject gptSettingsJsonObject = new JSONObject("{\"temperature\":0.8,\"gptProvider\":\"OpenAI (gpt-3.5-turbo)\"}");
+    private static JSONObject gptSettingsJsonObject = new JSONObject("{\"temperature\":0.8,\"gptProvider\":\"OpenAI (gpt-4o-mini)\"}");
     private static JFrame frame;
     private static JPanel mainPanel;
     private static JPanel settingsPanel;
@@ -114,7 +114,7 @@ public class Main {
         mainComponentsPanel.setLayout(new FlowLayout());
 
         // Create the first dropdown menu
-        String[] options = {"Clipboard", "Regionshot (OCR)", "Scrollshot (OCR)", "File (Live)","Photo (Coming Soon)"};
+        String[] options = {"Clipboard", "Regionshot (OCR)", "Scrollshot (OCR)", "Text File (Live)","Image File (Live)"};
         final JComboBox<String> firstDropdown = new JComboBox<>(options);
         firstDropdown.setBackground(new Color(189, 219, 225)); // RGB values for a blue-grey shade
 
@@ -156,7 +156,7 @@ public class Main {
                                 logger.info(selectedArgument);
                                 toggleSettingsPanelVisibility();
                                 if(!settingsVisible) toggleSettingsPanelVisibility();
-                            } else if (selectedFunction.equals("File (Live)")) {
+                            } else if (selectedFunction.equals("Text File (Live)")) {
                                 JFileChooser fileChooser = new JFileChooser();
                                 int returnValue = fileChooser.showOpenDialog(null);
                                 if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -167,6 +167,19 @@ public class Main {
                                     }else{
                                         JOptionPane.showMessageDialog(frame, "OK: I will pass the latest content of the selected file as part of the context to your specified GPT provider. \nThis means that any changes to the file will also be automatically reflected in the context. \nThe selected file: " + tempFile.getAbsolutePath());
                                         context.addCapturedData(tempFile.getAbsolutePath(), "File (Live)");
+                                    }
+                                }
+                            } else if (selectedFunction.equals("Image File (Live)")) {
+                                JFileChooser fileChooser = new JFileChooser();
+                                int returnValue = fileChooser.showOpenDialog(null);
+                                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                                    File tempFile = fileChooser.getSelectedFile();
+                                    if(!tempFile.exists()) {
+                                        // Do something with the selected file, e.g., display its path
+                                        JOptionPane.showMessageDialog(frame, "ERROR: Something is wrong with the selected file: " + tempFile.getAbsolutePath());
+                                    }else{
+                                        JOptionPane.showMessageDialog(frame, "OK: I will pass the latest content of the selected image source as part of the context to your specified GPT provider. (Only multimodal GPT providers) \nThis means that any changes to the file will also be automatically reflected in the context. \nThe selected file: " + tempFile.getAbsolutePath());
+                                        context.addCapturedData(tempFile.getAbsolutePath(), "Image File (Live)");
                                     }
                                 }
                             }
@@ -305,7 +318,7 @@ public class Main {
 
 
             // Create an array of options for the dropdown
-            String[] options = {"OpenAI (gpt-3.5-turbo)", "Google's VertexAI (chat-bison)", "Google's VertexAI (gemini-pro)", "Ollama"};
+            String[] options = {"OpenAI (gpt-4o-mini)", "OpenAI (gpt-3.5-turbo)", "Google's VertexAI (chat-bison)", "Google's VertexAI (gemini-pro)", "Ollama"};
 
             // Create a JComboBox with the options array
             final JComboBox<String> dropdown = new JComboBox<>(options);

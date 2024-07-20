@@ -39,7 +39,9 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
 
 
         boolean hasNewPrompt = false;
-        String model = "gpt-3.5-turbo";
+        String model = "gpt-4o-mini";
+        if (gptSettingsJsonObject.getString("gptProvider").equals("OpenAI (gpt-3.5-turbo)")) model = "gpt-3.5-turbo";
+
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
         JSONObject jsonBody = new JSONObject();
@@ -47,7 +49,7 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
         JSONArray messages = new JSONArray();
         messages.put(new JSONObject().put("role", "system").put("content", "You are a helpful assistant."));
 
-        // Add context
+        // Add text context
         List<Context.CapturedData> capturedDataList = context.getCapturedDataList();
         for (Context.CapturedData capturedData : capturedDataList) {
             String captureMethod = capturedData.getCaptureMethod();
@@ -60,8 +62,26 @@ public class OpenAIWellsOfWisdom implements WellsOfWisdom {
                 messages.put(new JSONObject().put("role", "system").put("content", "The text content captured by OCR from a portion of the user's screen is included below. It might have some redundant lines. \n" + capturedText));
             } else if (captureMethod.equals("File (Live)")) {
                 messages.put(new JSONObject().put("role", "system").put("content", "The content of a file is included below: \n" + capturedText));
-            } else {
-                messages.put(new JSONObject().put("role", "system").put("content", "Some additional information labeled as "+captureMethod+" is included below: \n" + capturedText));
+            }
+        }
+        if(model.equals("gpt-4o-mini")) {
+            //Add image context
+            for (Context.CapturedData capturedData : capturedDataList) {
+                String captureMethod = capturedData.getCaptureMethod();
+                String capturedText = capturedData.getCapturedText();
+                if (captureMethod.equals("Image File (Live)")) {
+                    messages.put(new JSONObject()
+                            .put("role", "user")
+                            .put("content", new JSONArray()
+                                    .put(new JSONObject()
+                                            .put("type", "text")
+                                            .put("text", "This is an image. "))
+                                    .put(new JSONObject()
+                                            .put("type", "image_url")
+                                            .put("image_url", new JSONObject()
+                                                    .put("url", "data:image/png;base64," + capturedText))))
+                    );
+                }
             }
         }
 

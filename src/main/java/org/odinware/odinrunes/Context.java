@@ -3,7 +3,11 @@ package org.odinware.odinrunes;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
 /**
  * The Context class represents the context in which the GPT request is made.
  * It contains captured data and user options that will be used to construct the request.
@@ -79,12 +83,28 @@ public class Context implements Serializable {
             this.captureMethod = captureMethod;
         }
 
+        public String getRawCapturedText(){
+            return capturedText;
+        }
         public String getCapturedText() {
             if(getCaptureMethod().equals("File (Live)")){
                String fileContent=TextHelper.readIntoString(capturedText);
                if(fileContent == null){
                    return "ERROR READING FROM FILE";
                } else return fileContent;
+            } else if(getCaptureMethod().equals("Image File (Live)")){
+                try{
+                    File file = new File(capturedText);
+                    // Read the file into a byte array
+                    byte[] fileContent = Files.readAllBytes(file.toPath());
+
+                    // Encode the byte array into a Base64 string
+                    String encodedString = Base64.getEncoder().encodeToString(fileContent);
+                    return encodedString;
+                } catch (IOException e) {
+                        e.printStackTrace();
+                        return "";
+                    }
             } else return capturedText;
 
         }
