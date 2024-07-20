@@ -17,8 +17,9 @@ Experience the power of OdinRunes in action with an engaging demo. Click the pla
 
 For a quick peek at the various use cases and capabilities of Odin Runes, feel free to explore [Odin Runes Wiki](https://github.com/leonid20000/OdinRunes/wiki). The wiki contains many short gif demos that showcase the unique features and functionality of Odin Runes. It is regularly updated with new content to keep you informed about the latest advancements and possibilities with Odin Runes.
 
-## Latest Updates
+## Major Updates
 
+- **Integration of gpt-4o-mini** (OdinRunes-1.5-SNAPSHOT July 20, 2024): OdinRunes now includes support for gpt-4o-mini, allowing users to supply images within the context for enhanced capabilities. [see demo](https://github.com/leonid20000/OdinRunes/wiki#how-to-query-your-cctv-cameras-using-gpt)
 - **Support for Ollama** (OdinRunes-1.2-SNAPSHOT February 9, 2024): Odin Runes now includes support for Ollama, an open-source tool available at [https://github.com/ollama/ollama](https://github.com/ollama/ollama). Ollama facilitates the local execution of multiple open-source LLMs (Language Model Models).
 
 ## Table of Contents
