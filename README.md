@@ -105,10 +105,10 @@ To install and set up Odin Runes, follow these steps:
 
     - `VERTEXAI_PROJECT_ID`: Set this environment variable to the project ID for your Google Cloud project. It is required to make API requests to the Vertex AI service. (*Required for using Google's GPT APIs.*)
 
-6. Once the installation and setup are complete, you can run Odin Runes. You can run Odin Runes by double-clicking on the JAR file `target/OdinRunes-1.3-SNAPSHOT-jar-with-dependencies.jar` or alternatively by using the following command:
+6. Once the installation and setup are complete, you can run Odin Runes. You can run Odin Runes by double-clicking on the JAR file `target/OdinRunes-1.5-SNAPSHOT-jar-with-dependencies.jar` or alternatively by using the following command:
 
    ```
-   java -jar target/OdinRunes-1.3-SNAPSHOT-jar-with-dependencies.jar
+   java -jar target/OdinRunes-1.5-SNAPSHOT-jar-with-dependencies.jar
    ```
 
    This will start the Odin Runes application.
