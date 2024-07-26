@@ -6,6 +6,10 @@ Welcome to Odin Runes, a powerful GPT (Generative Pre-trained Transformer) clien
 
 [![docs](https://img.shields.io/badge/docs-grey)](https://leonid20000.github.io/OdinRunes/org/odinware/odinrunes/package-summary.html)[![docs](https://github.com/leonid20000/OdinRunes/actions/workflows/pages/pages-build-deployment/badge.svg)](https://leonid20000.github.io/OdinRunes/org/odinware/odinrunes/package-summary.html)
 
+## Odin Runes Wiki
+
+For a quick peek at the various use cases and capabilities of Odin Runes, feel free to explore [Odin Runes Wiki](https://github.com/leonid20000/OdinRunes/wiki). The wiki contains many short gif demos that showcase the unique features and functionality of Odin Runes. It is regularly updated with new content to keep you informed about the latest advancements and possibilities with Odin Runes.
+
 
 ## Demo Video
 
@@ -13,9 +17,6 @@ Experience the power of OdinRunes in action with an engaging demo. Click the pla
 
 [![Odin Runes Demo Video](https://img.youtube.com/vi/8BPGULLC3Os/0.jpg)](https://www.youtube.com/watch?v=8BPGULLC3Os)
 
-## Odin Runes Wiki
-
-For a quick peek at the various use cases and capabilities of Odin Runes, feel free to explore [Odin Runes Wiki](https://github.com/leonid20000/OdinRunes/wiki). The wiki contains many short gif demos that showcase the unique features and functionality of Odin Runes. It is regularly updated with new content to keep you informed about the latest advancements and possibilities with Odin Runes.
 
 ## Major Updates
 
