@@ -13,7 +13,7 @@ For a quick peek at the various use cases and capabilities of Odin Runes, feel f
 
 ## Demo Video
 
-Experience the power of OdinRunes in action with an engaging demo. Click the play button below to witness how this useful java tool, driven by GPTs, boosts your productivity and saves you valuable time. For more up to date and shorter demos check the wiki above. 
+Experience the power of OdinRunes in action with an engaging demo. Click the play button below to witness how this useful java tool, driven by GPTs, boosts your productivity and saves you valuable time. For more up to date and shorter demos check the wiki above, since the demo video below does not contain the latest updates and added features. 
 
 [![Odin Runes Demo Video](https://img.youtube.com/vi/8BPGULLC3Os/0.jpg)](https://www.youtube.com/watch?v=8BPGULLC3Os)
 
